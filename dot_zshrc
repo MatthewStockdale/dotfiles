@@ -84,7 +84,13 @@ plugins=(git brew)
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
 
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
+
+# Load Antigen
+source "${HOME}/.antigen.zsh"
+
+# Load Antigen configurations
+antigen init ~/.antigenrc
 
 # User configuration
 
@@ -114,3 +120,13 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# github.com/nvbn/thefuck
+eval $(thefuck --alias)
+
+# iterm2 integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Personal envvars
+GITHUB_USERNAME="Craquehead"
+LPASS_AGENT_TIMEOUT=0
