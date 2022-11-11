@@ -132,5 +132,5 @@ export GITHUB_USERNAME="Craquehead"
 export LPASS_AGENT_TIMEOUT=0
 
 # SSH
-eval `ssh-agent` >/dev/null 2&>1
+eval `ssh-agent` >/dev/null 2>&1
 ssh-add -q ~/.ssh/Craquehead@github
