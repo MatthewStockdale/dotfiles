@@ -29,11 +29,11 @@ antigen bundles <<EOBUNDLES
   zsh-users/zsh-autosuggestions
   zsh-users/zsh-completions
   ael-code/zsh-colored-man-pages
-#  antigen bundle kennethreitz/autoenv
-#  antigen bundle b4b4r07/enhancd
-  antigen bundle supercrabtree/k
-#  antigen bundle esc/conda-zsh-completion
-  antigen bundle /Library/Ruby/Gems/2.6.0/gems/insite-engineers-1.6.2/zsh/insite
+#  kennethreitz/autoenv
+#  b4b4r07/enhancd
+  supercrabtree/k
+#  esc/conda-zsh-completion
+  /Library/Ruby/Gems/2.6.0/gems/insite-engineers-1.6.2/zsh/insite
 EOBUNDLES
 
 # Load the theme.
