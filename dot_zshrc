@@ -130,3 +130,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # Personal envvars
 GITHUB_USERNAME="Craquehead"
 LPASS_AGENT_TIMEOUT=0
+
+# SSH
+eval `ssh-agent`
+ssh-add ~/.ssh/Craquehead@github
