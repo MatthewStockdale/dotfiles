@@ -78,7 +78,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git zsh-autosuggestions brew)
-plugins=(git brew)
+plugins=(git brew insite)
 
 # homebrew completions
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -128,9 +128,9 @@ eval $(thefuck --alias)
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Personal envvars
-GITHUB_USERNAME="Craquehead"
-LPASS_AGENT_TIMEOUT=0
+export GITHUB_USERNAME="Craquehead"
+export LPASS_AGENT_TIMEOUT=0
 
 # SSH
-eval `ssh-agent`
-ssh-add ~/.ssh/Craquehead@github
+eval `ssh-agent` >/dev/null 2&>1
+ssh-add -q ~/.ssh/Craquehead@github

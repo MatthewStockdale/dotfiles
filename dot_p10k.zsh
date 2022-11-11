@@ -47,6 +47,7 @@
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     status                  # exit code of the last command
+    insite                  # logicworks insite
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
@@ -1688,6 +1689,15 @@
   # Type `p10k help segment` for documentation and a more sophisticated example.
   function prompt_example() {
     p10k segment -b 1 -f 3 -i '⭐' -t 'hello, %n'
+  }
+
+  # Logicworks insite
+  function prompt_insite() {
+    if [[ `type insite` ]]
+    then
+      local insite_prompt=`insite_prompt_info`
+      p10k segment -f white -i '' -t $insite_prompt
+    fi
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
