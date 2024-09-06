@@ -1,3 +1,3 @@
 My dotfiles
 
-chezmoi init https://github.com/Craquehead/gotfiles.git
+chezmoi init https://github.com/Craquehead/dotfiles.git
