@@ -134,9 +134,11 @@ antigen init ~/.antigenrc
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Personal envvars
-export GITHUB_USERNAME="Craquehead"
-export LPASS_AGENT_TIMEOUT=0
+export GITHUB_USERNAME="MatthewStockdale"
+
+# Bitwarden
+[ -f ~/.bitwarden.zsh ] && . ~/.bitwarden.zsh
 
 # SSH
 eval `ssh-agent` >/dev/null 2>&1
-ssh-add -q ~/.ssh/Craquehead@github
+[ -f ~/.ssh/MatthewStockdale@github ] && ssh-add -q ~/.ssh/MatthewStockdale@github
