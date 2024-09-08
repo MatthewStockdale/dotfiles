@@ -138,6 +138,7 @@ export GITHUB_USERNAME="MatthewStockdale"
 
 # Bitwarden
 [ -f ~/.bitwarden.zsh ] && . ~/.bitwarden.zsh
+eval "$(bw completion --shell zsh); compdef _bw bw;"
 
 # SSH
 eval `ssh-agent` >/dev/null 2>&1
