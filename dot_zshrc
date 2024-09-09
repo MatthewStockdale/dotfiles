@@ -143,7 +143,7 @@ ssh-add -q ~/.ssh/MatthewStockdale@github
 
 # k0s
 export DISABLE_TELEMETRY=true
-[ -f ~/git/k0s/k0s.config ] && export KUBECONFIG=~/.git/k0s/k0s.config
+[ -f ~/git/k0s/k0s.config ] && export KUBECONFIG=~/git/k0s/k0s.config
 
 # OSC 1337 working directory
 precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }
