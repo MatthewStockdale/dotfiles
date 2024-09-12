@@ -130,20 +130,29 @@ eval $(thefuck --alias)
 # iterm2 integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# Tabby integration
+
+# WSL
+if [ -n "${WSL_INTEROP}" ]; then
+  cd
+fi
+
 # Personal envvars
 export GITHUB_USERNAME="MatthewStockdale"
-export LPASS_AGENT_TIMEOUT=0
 
 # SSH
 eval `ssh-agent` >/dev/null 2>&1
 ssh-add -q ~/.ssh/MatthewStockdale@github
+ssh-add -q ~/.ssh/k0sadmin
  
 # autojump
 [ -f /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh
 
 # k0s
 export DISABLE_TELEMETRY=true
-[ -f ~/git/k0s/k0s.config ] && export KUBECONFIG=~/git/k0s/k0s.config
 
 # OSC 1337 working directory
-precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }
+#precmd () { echo -n "\x1b]1337;CurrentDir=$(hostname):$(pwd)\x07" }
+
+# Aliases
+alias k="kubtctl"
