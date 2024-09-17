@@ -81,7 +81,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git zsh-autosuggestions brew)
-plugins=(git brew insite)
+plugins=(git zsh-autosuggestions brew insite kubectl)
 
 # homebrew completions
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
