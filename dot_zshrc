@@ -87,10 +87,12 @@ plugins=(git brew insite)
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
 
-#source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # Load Antigen
 source "${HOME}/.antigen.zsh"
+k0s completion zsh > "${fpath[1]}/_k0s"
+k0sctl completion > "${fpath[1]}/_k0sctl"
 
 # Load Antigen configurations
 antigen init ~/.antigenrc
@@ -143,16 +145,14 @@ export EDITOR="vim"
 
 # SSH
 eval `ssh-agent` >/dev/null 2>&1
-if [ -f ~/.ssh/MatthewStockdale@github ] && ssh-add -q ~/.ssh/MatthewStockdale@github
-if [ -f ~/.ssh/k0sadmin ] && ssh-add -q ~/.ssh/MatthewStockdale@github
+[[ -f ~/.ssh/MatthewStockdale@github ]] && ssh-add -q ~/.ssh/MatthewStockdale@github
+[[ -f ~/.ssh/k0sadmin ]] && ssh-add -q ~/.ssh/MatthewStockdale@github
  
 # autojump
-[ -f /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh
+[[ -f /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh ]] && . /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh
 
 # k0s
 export DISABLE_TELEMETRY=true
-k0s completion zsh > "${fpath[1]}/_k0s"
-k0sctl completion > "${fpath[1]}/_k0sctl"
 
 # OSC 1337 working directory
 #precmd () { echo -n "\x1b]1337;CurrentDir=$(hostname):$(pwd)\x07" }
