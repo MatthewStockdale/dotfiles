@@ -1,0 +1,3 @@
+autocmd Filetype yaml set indentexpr=
+set number
+set modeline
