@@ -11,6 +11,9 @@ fi
 # homebrew init
 [ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+# bitwarden
+[ -f ~/.bitwarden.zsh ] && source ~/.bitwarden.zsh
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
