@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 brew_install() {
   echo "\nInstalling $1"
@@ -12,7 +12,7 @@ brew_install() {
 # antigen
 curl -L git.io/antigen > ~/.antigen.zsh
 
-# homebrews
+# homebrew
 brews=(
   thefuck
   sops
