@@ -85,15 +85,18 @@ COMPLETION_WAITING_DOTS="true"
 # plugins are loaded in antigen
 
 # homebrew completions
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
+BREWPREFIX=$(brew --prefix)
+ZSHCOMPLETIONS=${BREWPREFIX}/share/zsh-completions
+
+FPATH="${BREWPREFIX}/share/zsh/site-functions:${FPATH}"
+FPATH="${ZSHCOMPLETIONS}:${FPATH}"
+k0s completion zsh > ${ZSHCOMPLETIONS}/_k0s
+k0sctl completion > ${ZSHCOMPLETIONS}/_k0sctl
 
 source $ZSH/oh-my-zsh.sh
 
 # Load Antigen
 source "${HOME}/.antigen.zsh"
-k0s completion zsh > "${fpath[1]}/_k0s"
-k0sctl completion > "${fpath[1]}/_k0sctl"
 
 # Load Antigen configurations
 antigen init ~/.antigenrc
