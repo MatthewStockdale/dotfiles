@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 brew_install() {
   echo "\nInstalling $1"
@@ -12,7 +12,7 @@ brew_install() {
 # antigen
 curl -L git.io/antigen > ~/.antigen.zsh
 
-# homebrews
+# homebrew
 brews=(
   thefuck
   sops
@@ -28,6 +28,7 @@ brews=(
   cilium-cli
   neovim
   k0sctl
+  zsh-completions
 )
 
 for brew in "${brews[@]}"
@@ -35,8 +36,11 @@ do
   brew_install $brew
 done
 
-# Fonts on MacOS
 {{ if eq .chezmoi.os "darwin" -}}
+# Fonts on MacOS
 brew_install font-hack-nerd-font
 brew_install font-caskaydia-cove-nerd-font
 {{ end -}}
+
+# powerlevel10k theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
