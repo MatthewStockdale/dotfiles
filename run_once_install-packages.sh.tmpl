@@ -35,8 +35,11 @@ do
   brew_install $brew
 done
 
-# Fonts on MacOS
 {{ if eq .chezmoi.os "darwin" -}}
+# Fonts on MacOS
 brew_install font-hack-nerd-font
 brew_install font-caskaydia-cove-nerd-font
 {{ end -}}
+
+# powerlevel10k theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
