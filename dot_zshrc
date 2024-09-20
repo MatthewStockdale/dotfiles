@@ -11,6 +11,11 @@ fi
 # homebrew init
 [ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+# keychain
+
+[ -f ~/.keychain/$(hostname)-sh ] && source ~/.keychain/$(hostname)-sh
+echo keychain
+
 # bitwarden
 [ -f ~/.bitwarden.zsh ] && source ~/.bitwarden.zsh
 
