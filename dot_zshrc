@@ -136,9 +136,9 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # Tabby integration
 
 # WSL
-if [ -n "${WSL_INTEROP}" ]; then
-  cd
-fi
+#if [ -n "${WSL_INTEROP}" ]; then
+#  cd
+#fi
 
 # Personal envvars
 export GITHUB_USERNAME="MatthewStockdale"
