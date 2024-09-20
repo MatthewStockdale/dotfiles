@@ -81,7 +81,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git zsh-autosuggestions brew)
-plugins=(git zsh-autosuggestions brew insite kubectl)
+plugins=(git brew insite)
 
 # homebrew completions
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -143,8 +143,8 @@ export EDITOR="vim"
 
 # SSH
 eval `ssh-agent` >/dev/null 2>&1
-ssh-add -q ~/.ssh/MatthewStockdale@github
-ssh-add -q ~/.ssh/k0sadmin
+if [ -f ~/.ssh/MatthewStockdale@github ] && ssh-add -q ~/.ssh/MatthewStockdale@github
+if [ -f ~/.ssh/k0sadmin ] && ssh-add -q ~/.ssh/MatthewStockdale@github
  
 # autojump
 [ -f /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh
