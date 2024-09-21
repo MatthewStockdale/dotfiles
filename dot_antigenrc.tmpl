@@ -3,7 +3,7 @@
 # Oh My Zsh: https://github.com/ohmyzsh/ohmyzsh
 
 MAGIC_ENTER_GIT_COMMAND='git status -u .'
-MAGIC_ENTER_OTHER_COMMAND='k -ah'
+MAGIC_ENTER_OTHER_COMMAND='grc ls -alh'
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -19,11 +19,10 @@ antigen bundles <<EOBUNDLES
   docker
   autojump
   colorize
-  colored-man-pages
   copyfile
   copypath
   dirhistory
-  {{ if eq .chezmoi.os "darwin" -}}
+  {{- if eq .chezmoi.os "darwin" -}}
   iterm
   {{ end }}
   genpass
@@ -49,7 +48,7 @@ antigen bundles <<EOBUNDLES
 #  b4b4r07/enhancd
   supercrabtree/k
 #  esc/conda-zsh-completion
-{{ if eq .insite.enabled "true" }}
+{{- if eq .insite.enabled "true" - }}
   /Library/Ruby/Gems/2.6.0/gems/insite-engineers-1.6.2/zsh/insite
 {{ end }}
 EOBUNDLES
