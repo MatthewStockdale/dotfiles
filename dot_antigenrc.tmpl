@@ -10,16 +10,32 @@ antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundles <<EOBUNDLES
-  git
 #  heroku
 #  pip
 #  lein
+  argocd
+  autoenv
   command-not-found
   docker
   autojump
   colorize
+  colored-man-pages
+  copyfile
+  copypath
+  dirhistory
+  {{ if eq .chezmoi.os "darwin" -}}
+  iterm
+  {{ end }}
+  genpass
+  git
+  keychain
+  kube-ps1
+  kubectl
+  kubectx
   magic-enter
   safe-paste
+  ssh 
+  vscode
 EOBUNDLES
 
 # Additional bundles
