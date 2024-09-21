@@ -3,25 +3,20 @@
 
 export HOMEBREW_NO_ENV_HINTS=TRUE
 
-brew_install() {
-  echo "\nInstalling $1"
-  if brew list $1 &>/dev/null; then
-    echo "${1} is already installed"
-  else
-    brew install $1
-  fi
-}
-
 # antigen
 [[ -f ~/.antigen.zsh ]] || curl -L git.io/antigen > ~/.antigen.zsh
 
 # homebrew
 brews=(
   age
+  argocd
+  autoenv
   autojump
   bitwarden-cli
   cilium-cli
+  direnv
   grc
+  gum
   helm
   helmfile
   k0s
@@ -30,6 +25,9 @@ brews=(
   kustomize
   neovim
   sops
+  task
+  tasksh
+  taskwarrior-tui
   zsh-completions
 )
 
@@ -37,8 +35,13 @@ installedbrews=$(brew list)
 
 #for brew ($brews) [[ ! ${installedbrews[@]} =~ ${brew} ]] || brew_install ${brew} end
 for brew in "$brews[@]"; do
- if [[ ! ${installedbrews[(ie)${brew}]} -lt ${#installedbrews} ]]; then
-  brew install ${brew}
+ if [ ! ${installedbrews[(ie)${brew}]} -lt ${#installedbrews} ]; then
+  if [ -e $(which gum) ]
+  then 
+    gum prompt brew install --quiet ${brew}
+  else 
+    brew install --quiet ${brew}
+  fi
  fi
   
 done
