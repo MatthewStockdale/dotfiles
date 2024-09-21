@@ -34,7 +34,7 @@ installedbrews=$(brew list)
 
 #for brew ($brews) [[ ! ${installedbrews[@]} =~ ${brew} ]] || brew_install ${brew} end
 for brew in "$brews[@]"; do
- if [ ! ${installedbrews[(ie)${brew}]} -lt ${#installedbrews} ]; then
+ if [[ ${installedbrews[(ie)${brew}]} -lt ${#installedbrews} ]]; then
   if [ -e $(which gum) ]
   then 
     gum spin --title="brew install ${brew}" --show-error -- brew install --quiet ${brew}
@@ -42,8 +42,7 @@ for brew in "$brews[@]"; do
     echo "brew install ${brew}"
     brew install --quiet ${brew}
   fi
- fi
-  
+ fi 
 done
 
 {{ if eq .chezmoi.os "darwin" -}}
