@@ -4,7 +4,7 @@
 export HOMEBREW_NO_ENV_HINTS=TRUE
 
 # antigen
-[[ -f ~/.antigen.zsh ]] || curl -L git.io/antigen > ~/.antigen.zsh
+[ -f ~/.antigen.zsh ] || curl -L git.io/antigen > ~/.antigen.zsh
 
 # homebrew
 brews=(
@@ -38,8 +38,9 @@ for brew in "$brews[@]"; do
  if [ ! ${installedbrews[(ie)${brew}]} -lt ${#installedbrews} ]; then
   if [ -e $(which gum) ]
   then 
-    gum prompt brew install --quiet ${brew}
+    gum spin --title="brew install ${brew}" --show-error -- brew install --quiet ${brew}
   else 
+    echo "brew install ${brew}"
     brew install --quiet ${brew}
   fi
  fi
