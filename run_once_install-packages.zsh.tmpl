@@ -1,0 +1,64 @@
+#!/usr/bin/env zsh
+# vi: ft=zsh
+
+export HOMEBREW_NO_ENV_HINTS=TRUE
+
+# antigen
+[ -f ~/.antigen.zsh ] || curl -L git.io/antigen > ~/.antigen.zsh
+
+# homebrew
+brews=(
+  age
+  argocd
+  autoenv
+  autojump
+  bitwarden-cli
+  cilium-cli
+  direnv
+  grc
+  gum
+  helm
+  helmfile
+  k0sctl
+  k9s
+  kustomize
+  neovim
+  ripgrep
+  sops
+  task
+  tasksh
+  taskwarrior-tui
+  zsh-completions
+)
+
+installedbrews=$(brew list)
+
+#for brew ($brews) [[ ! ${installedbrews[@]} =~ ${brew} ]] || brew_install ${brew} end
+for brew in "$brews[@]"; do
+  if ((${installedbrews[(Ie)${brew}]})); then
+    # brew already installed, don't need to do anything
+    else
+      if [ -e $(which gum) ]; then 
+        gum spin --title="brew install ${brew}" --show-error -- brew install --quiet ${brew}
+      else 
+        brew install --quiet ${brew}
+      fi
+   fi 
+done
+
+{{ if eq .chezmoi.os "darwin" -}}
+# Fonts on MacOS
+brew_install font-hack-nerd-font
+brew_install font-caskaydia-cove-nerd-font
+{{ end -}}
+
+# powerlevel10k theme
+[ -d $HOME/.oh-my-zsh/custom/themes/powerlevel10k ] || \
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k \
+  > /dev/null 2>&1
+
+# neovim kickstart
+[ -d ${XDG_CONFIG_HOME:-$HOME/.config}/nvim ] || \
+  git clone https://github.com/MatthewStockdale/kickstart.nvim.git \
+  "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim > /dev/null 2>&1
