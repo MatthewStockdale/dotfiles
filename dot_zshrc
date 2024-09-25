@@ -171,4 +171,4 @@ export DISABLE_TELEMETRY=true
 [ -f /home/linuxbrew/.linuxbrew/etc/grc.zsh ] && . /home/linuxbrew/.linuxbrew/etc/grc.zsh
 
 # Aliases
-alias k="kubectl"
+# alias k="kubectl"
