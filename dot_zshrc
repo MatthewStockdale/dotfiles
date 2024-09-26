@@ -9,6 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # homebrew init
+[ $(uname -m) = "aarch64" ] && export HOMEBREW_BUILD_FROM_SOURCE=1
 [ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # keychain
