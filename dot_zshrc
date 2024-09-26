@@ -98,8 +98,8 @@ ZSHCOMPLETIONS=${BREWPREFIX}/share/zsh-completions
 
 FPATH="${BREWPREFIX}/share/zsh/site-functions:${FPATH}"
 FPATH="${ZSHCOMPLETIONS}:${FPATH}"
-[ -e $(which k0s) ] && k0s completion zsh > ${ZSHCOMPLETIONS}/_k0s
-[ -e $(which k0sctl) ] && k0sctl completion zsh > ${ZSHCOMPLETIONS}/_k0sctl
+[ -e "$(which k0s") ] && k0s completion zsh > ${ZSHCOMPLETIONS}/_k0s
+[ -e "$(which k0sctl)" ] && k0sctl completion zsh > ${ZSHCOMPLETIONS}/_k0sctl
 
 source $ZSH/oh-my-zsh.sh
 
