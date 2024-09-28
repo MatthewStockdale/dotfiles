@@ -37,6 +37,10 @@ source ${zsh_plugins}.zsh
 # bitwarden
 [ -f ~/.bitwarden.zsh ] && source ~/.bitwarden.zsh
 
+tma () {
+  SESSION=$(tmux list-sessions -F \#S | gum filter --placeholder "Pick session...")
+  tmux switch-client -t $SESSION || tmux attach -t $SESSION
+}
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
