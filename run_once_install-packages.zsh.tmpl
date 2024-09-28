@@ -5,7 +5,7 @@ export HOMEBREW_NO_ENV_HINTS=TRUE
 BREWCMD="brew install"
 
 # homebrew doesn't natively support arm, packages must be built from source
-[ $(uname -m) = "aarch64"] && BREWCMD="${BREWCMD} --build-from-source"
+[ $(uname -m) = "aarch64" ] && BREWCMD="${BREWCMD} --build-from-source"
 
 # antigen
 [ -f ~/.antigen.zsh ] || curl -L git.io/antigen > ~/.antigen.zsh
