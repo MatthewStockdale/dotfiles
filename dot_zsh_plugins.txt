@@ -1,3 +1,14 @@
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
+romkatv/powerlevel10k
+yzdann/kctl
+hkupty/ssh-agent
+davidde/git
+zshzoo/magic-enter
+
+
+# frameworks like oh-my-zsh are supported
+#getantidote/use-omz        # handle OMZ dependencies
+#ohmyzsh/ohmyzsh path:lib   # load OMZ's library
+#ohmyzsh/ohmyzsh path:plugins/colored-man-pages  # load OMZ plugins
