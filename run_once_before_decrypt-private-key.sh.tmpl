@@ -1,0 +1,8 @@
+#!/bin/sh
+# vi: ft=bash
+
+if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/chezmoi/key.txt" ]; then
+    mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/chezmoi"
+    chezmoi age decrypt --output "${XDG_CONFIG_HOME:-$HOME/.config}/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
+    chmod 600 "${XDG_CONFIG_HOME:-$HOME/.config}/chezmoi/key.txt"
+fi

@@ -2,14 +2,19 @@
 # vi: ft=zsh
 
 export HOMEBREW_NO_ENV_HINTS=TRUE
+BREWCMD="brew install"
+
+# homebrew doesn't natively support arm, packages must be built from source
+[ $(uname -m) = "aarch64" ] && BREWCMD="${BREWCMD} --build-from-source"
 
 # antigen
 [ -f ~/.antigen.zsh ] || curl -L git.io/antigen > ~/.antigen.zsh
 
-# homebrew
+# homebrews to install
 brews=(
   age
   argocd
+  antidote
   autoenv
   autojump
   bitwarden-cli
@@ -33,15 +38,14 @@ brews=(
 
 installedbrews=$(brew list)
 
-#for brew ($brews) [[ ! ${installedbrews[@]} =~ ${brew} ]] || brew_install ${brew} end
 for brew in "$brews[@]"; do
   if ((${installedbrews[(Ie)${brew}]})); then
     # brew already installed, don't need to do anything
     else
       if [ -e $(which gum) ]; then 
-        gum spin --title="brew install ${brew}" --show-error -- brew install --quiet ${brew}
+        gum spin --title="brew install ${brew}" --show-error -- ${BREWCMD} --quiet ${brew}
       else 
-        brew install --quiet ${brew}
+        ${BREWCMD} --quiet ${brew}
       fi
    fi 
 done

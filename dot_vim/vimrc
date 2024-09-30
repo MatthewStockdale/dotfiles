@@ -2,3 +2,5 @@ autocmd Filetype yaml set indentexpr=
 set number
 set modeline
 set filetype
+set shortmess=a
+set cmdheight=2

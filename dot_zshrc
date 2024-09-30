@@ -1,3 +1,15 @@
+#
+# vi: ft=bash
+
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
+
+# some omz plugins expect $ZSH_CACHE_DIR
+export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zsh"
+[ -d ${ZSH_CACHE_DIR} ] || mkdir ${ZSH_CACHE_DIR}
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -5,10 +17,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # homebrew init
+[ $(uname -m) = "aarch64" ] && export HOMEBREW_BUILD_FROM_SOURCE=1
 [ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # keychain
@@ -20,13 +30,21 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+=======
+# Lazy-load antidote and generate the static load file only when needed
+zsh_plugins=${ZDOTDIR:-$HOME}/.zsh_plugins
+if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
+  (
+    source ${HOMEBREW_PREFIX}/opt/antidote/share/antidote/antidote.zsh
+    antidote bundle <${zsh_plugins}.txt >${zsh_plugins}.zsh
+  )
+fi
+source ${zsh_plugins}.zsh
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
+tma () {
+  SESSION=$(tmux list-sessions -F \#S | gum filter --placeholder "Pick session...")
+  tmux switch-client -t $SESSION || tmux attach -t $SESSION
+}
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -41,7 +59,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
-zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
@@ -94,19 +112,20 @@ COMPLETION_WAITING_DOTS="true"
 # homebrew completions
 BREWPREFIX=$(brew --prefix)
 ZSHCOMPLETIONS=${BREWPREFIX}/share/zsh-completions
+=======
+export BREWPREFIX=$(brew --prefix)
+export ZSHCOMPLETIONS=${BREWPREFIX}/share/zsh-completions
 
 FPATH="${BREWPREFIX}/share/zsh/site-functions:${FPATH}"
 FPATH="${ZSHCOMPLETIONS}:${FPATH}"
-[ -e $(which k0s) ] && k0s completion zsh > ${ZSHCOMPLETIONS}/_k0s
-[ -e $(which k0sctl) ] && k0sctl completion zsh > ${ZSHCOMPLETIONS}/_k0sctl
-
-source $ZSH/oh-my-zsh.sh
+[ -e "$(which k0s)" ] && k0s completion zsh > ${ZSHCOMPLETIONS}/_k0s
+[ -e "$(which k0sctl)" ] && k0sctl completion zsh > ${ZSHCOMPLETIONS}/_k0sctl
 
 # Load Antigen
-source "${HOME}/.antigen.zsh"
+#source "${HOME}/.antigen.zsh"
 
 # Load Antigen configurations
-antigen init ~/.antigenrc
+#antigen init ~/.antigenrc
 
 # User configuration
 
@@ -123,6 +142,14 @@ antigen init ~/.antigenrc
 # fi
 
 export EDITOR='nvim'
+if [ -e "$(which nvim)" ]; then
+  export EDITOR="nvim"
+  alias vi="nvim"
+else
+  export EDITOR="vim"
+  alias vi="vim"
+fi
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -134,7 +161,6 @@ export EDITOR='nvim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vi='nvim'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -156,6 +182,7 @@ export EDITOR="vim"
 # SSH
 eval `ssh-agent` >/dev/null 2>&1
 [[ -f ~/.ssh/MatthewStockdale@github ]] && ssh-add -q ~/.ssh/MatthewStockdale@github
+[[ -f ~/.ssh/Matt.Stockdale@gmail.com ]] && ssh-add -q ~/.ssh/Matt.Stockdale@gmail.com
 [[ -f ~/.ssh/k0sadmin ]] && ssh-add -q ~/.ssh/MatthewStockdale@github
  
 # autojump
