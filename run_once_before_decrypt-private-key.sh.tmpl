@@ -1,14 +1,12 @@
 #!/bin/sh
 # vi: ft=bash
 
-if [[ "$(command -v age)" ]]; then
-  echo "debug: found age, decrypting"
+if [ "$(command -v age)" ]; then
   if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/chezmoi/key.txt" ]; then
-    echo "debug: no decrupted key found age, decrypting"
     mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/chezmoi"
     chezmoi age decrypt --output "${XDG_CONFIG_HOME:-$HOME/.config}/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
     chmod 600 "${XDG_CONFIG_HOME:-$HOME/.config}/chezmoi/key.txt"
   fi
 else
-    echo "age not installed, skipping decryption"
+    echo "error: age not installed, skipping decryption"
 fi
